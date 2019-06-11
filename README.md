@@ -1,2 +1,2 @@
 # COGS18_FinalProject
-final project for COGS18, Spring 19, at UCSD
+Final project for COGS18, taught by professor Ellis in Spring 19, at UCSD
