@@ -358,4 +358,3 @@ def run(width=900, height=900):
     timerFiredWrapper(canvas, data)
     # launch the game
     root.mainloop()
-    print("Having a nice summer!")
