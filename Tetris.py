@@ -21,7 +21,7 @@ def __init__(data):
     data.isPaused = False
     data.score = 0
 
-    # pieces specs #
+    # pieces specs 
 
     #color
     data.tetrisPieceColors = [ "red", "yellow", "magenta", "cyan", "mediumaquamarine", "green", "orange" ]
@@ -199,7 +199,7 @@ def placeFallingPiece(data):
         for j in range(len(data.fallingPiece[0])):
             if data.fallingPiece[i][j] == True:
                 data.board[data.fallingPieceRow + i][data.fallingPieceCol + j] = data.fallingPieceColor
-# caling removeFullRows to remove a row that is already full
+# calling removeFullRows to remove a row that is already full
     removeFullRows(data)
 
 def removeFullRows(data):
@@ -243,7 +243,7 @@ def drawGameOver(canvas,data):
     #playsound('/Users/zijianliu/Downloads/Roblox-death-sound/Roblox-death-sound.mp3')
 
 def drawPause(canvas,data):
-    """isplay a message when the game is paused"""
+    """display a message when the game is paused"""
     canvas.create_rectangle(0, 50, playTetris()[0], 300, fill = "black", width = 0)
     canvas.create_text(width/2, height/2 - height/5, text="The game has been",
     fill = "white", font="Impact 20 ")
@@ -358,4 +358,4 @@ def run(width=900, height=900):
     timerFiredWrapper(canvas, data)
     # launch the game
     root.mainloop()
-    print("bye!")
+    print("Having a nice summer!")
