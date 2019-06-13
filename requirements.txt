@@ -1,0 +1,3 @@
+# Requires tkinter module
+# Requires python 3
+# *ONLY* works on Mac!!!
