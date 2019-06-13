@@ -2,10 +2,10 @@
 # constructor for the game
 def __init__(data):
 
-"""
-__init__ function is used to allocate the board by setting color, time, along with other attributes
-tetrisPieces are a collection of standard tetris pieces, code can be found in above link
-"""
+    """
+    __init__ function is used to allocate the board by setting color, time, along with other attributes
+    tetrisPieces are a collection of standard tetris pieces, code can be found in above link
+    """
 
     # initializing board
     data.emptyColor = "cadetblue"
@@ -78,10 +78,10 @@ tetrisPieces are a collection of standard tetris pieces, code can be found in ab
 
 
 def playTetris(rows=15,cols=10):
-"""
-playTetris() is used to set up the dimensions of the game
-The dimensions are defaulted to be 15 rows * 10 columns
-"""
+    """
+    playTetris() is used to set up the dimensions of the game
+    The dimensions are defaulted to be 15 rows * 10 columns
+    """
 
     cellSize = 20
     margin = 25
@@ -92,7 +92,7 @@ The dimensions are defaulted to be 15 rows * 10 columns
 
 
 def drawBoard(canvas, data):
-"""drawing the board by calling drawCell iteratively on every cell"""
+    """drawing the board by calling drawCell iteratively on every cell"""
     for i in range(len(data.board)):
         for j in range(len(data.board[0])):
             color=data.board[i][j]
@@ -100,7 +100,7 @@ def drawBoard(canvas, data):
 
 
 def drawCell(canvas, data, rows, cols, color):
-"""draw every cell individually for the board and for every falling piece"""
+    """draw every cell individually for the board and for every falling piece"""
     left = data.margin + data.cellSize * cols
     top = data.margin + data.cellSize * rows
     right = left + data.cellSize
@@ -109,7 +109,7 @@ def drawCell(canvas, data, rows, cols, color):
     outline = "bisque", width = 1 )
 
 def newFallingPiece(data):
-"""creating a falling piece"""
+    """creating a falling piece"""
     # randomly choose an index from the tetrisPieces list
     # to randomize piece type and color
     randomIndex = random.randint(0, len(data.tetrisPieces) - 1)
@@ -126,7 +126,7 @@ def newFallingPiece(data):
 
 
 def drawFallingPiece(canvas,data):
-"""drawing the falling piece on the board"""
+    """drawing the falling piece on the board"""
     for i in range(len(data.fallingPiece)):
         for j in range(len(data.fallingPiece[0])):
             if data.fallingPiece[i][j] == True:
@@ -135,7 +135,7 @@ def drawFallingPiece(canvas,data):
                 data.fallingPieceCol + j,data.fallingPieceColor)
 
 def moveFallingPiece(data, row, col):
-"""move the falling piece on the board"""
+    """move the falling piece on the board"""
     data.fallingPieceRow += row
     data.fallingPieceCol += col
     if not fallingPieceIsLegal(data):
@@ -147,10 +147,10 @@ def moveFallingPiece(data, row, col):
 
 
 def fallingPieceIsLegal(data):
-""" Check if the piece is legal by checking if:
+    """ Check if the piece is legal by checking if:
     1. the piece is going out of the board
     2. the piece is going to crash into the pile of pieces placed
-"""
+    """
     for i in range(len(data.fallingPiece)):
         for j in range(len(data.fallingPiece[0])):
             if data.fallingPiece[i][j] == True:
@@ -164,7 +164,7 @@ def fallingPieceIsLegal(data):
     return True
 
 def rotateFallingPiece(data):
-"""Rotate the falling piece by modifying its row/col attributes"""
+    """Rotate the falling piece by modifying its row/col attributes"""
     #getting information for old piece
     oldPiece = data.fallingPiece
     oldRowPosition, oldColPosition = data.fallingPieceRow, data.fallingPieceCol
@@ -194,7 +194,7 @@ def rotateFallingPiece(data):
         data.fallingPieceCol=oldColPosition
 
 def placeFallingPiece(data):
-"""when a piece falls to the bottom, it become part of the board"""
+    """when a piece falls to the bottom, it become part of the board"""
     for i in range(len(data.fallingPiece)):
         for j in range(len(data.fallingPiece[0])):
             if data.fallingPiece[i][j] == True:
@@ -203,7 +203,7 @@ def placeFallingPiece(data):
     removeFullRows(data)
 
 def removeFullRows(data):
-"""removing a full row; if success, increment total score"""
+    """removing a full row; if success, increment total score"""
     board = data.board
     score = 0
     filledRowIndex = []
@@ -231,7 +231,7 @@ def removeFullRows(data):
     data.score += score**2
 
 def drawGameOver(canvas,data):
-"""display a message when the game is over"""
+    """display a message when the game is over"""
     #background
     canvas.create_rectangle(0, 50, playTetris()[0], 300, fill = "black", width = 0)
     canvas.create_text( width/2, height/2 - height/7, text="Game",
@@ -243,7 +243,7 @@ def drawGameOver(canvas,data):
     #playsound('/Users/zijianliu/Downloads/Roblox-death-sound/Roblox-death-sound.mp3')
 
 def drawPause(canvas,data):
-"""isplay a message when the game is paused"""
+    """isplay a message when the game is paused"""
     canvas.create_rectangle(0, 50, playTetris()[0], 300, fill = "black", width = 0)
     canvas.create_text(width/2, height/2 - height/5, text="The game has been",
     fill = "white", font="Impact 20 ")
@@ -253,11 +253,11 @@ def drawPause(canvas,data):
     fill = "white", font="Arial 10 bold")
 
 def mousePressed(event,data):
-"""Not using mouse, so just pass"""
+    """Not using mouse, so just pass"""
     pass
 
 def keyPressed(event, data):
-"""For each key pressed, manipulate the game in various ways"""
+    """For each key pressed, manipulate the game in various ways"""
     # reset the whole game
     if (event.keysym == "r"):
         __init__(data)
@@ -279,7 +279,7 @@ def keyPressed(event, data):
                 rotateFallingPiece(data)
 
 def timerFired(data):
-"""the functions natually take place when certain limitation is reached"""
+    """the functions natually take place when certain limitation is reached"""
     # when game is not paused
     if not data.isPaused :
         if  moveFallingPiece(data,1,0) == False:
@@ -294,7 +294,7 @@ def timerFired(data):
                 data.isGameOver = True
 
 def redrawAll(canvas, data):
-"""drawing everything(board, pieces, text)"""
+    """drawing everything(board, pieces, text)"""
     canvas.create_rectangle( 0, 0, width, height, fill = data.backGround )
     drawBoard(canvas,data)
     drawFallingPiece(canvas, data)
@@ -308,10 +308,10 @@ def redrawAll(canvas, data):
         drawGameOver(canvas,data)
 
 def run(width=900, height=900):
-"""run function adapted from the starter code(link listed at the start)"""
+    """run function adapted from the starter code(link listed at the start)"""
 
     def redrawAllWrapper(canvas, data):
-    """wrapper function for redrawAll"""
+        """wrapper function for redrawAll"""
         canvas.delete(ALL)
         canvas.create_rectangle(0, 0, data.width, data.height,
                                 fill='white', width=0)
@@ -319,20 +319,20 @@ def run(width=900, height=900):
         canvas.update()
 
     def mousePressedWrapper(event, canvas, data):
-    """
-    wrapper function for mousePressed
-    I didn't implement any function that involves using mouse
-    """
+        """
+        wrapper function for mousePressed
+        I didn't implement any function that involves using mouse
+        """
         mousePressed(event, data)
         redrawAllWrapper(canvas, data)
 
     def keyPressedWrapper(event, canvas, data):
-    """wrapper function for keyPressed"""
+        """wrapper function for keyPressed"""
         keyPressed(event, data)
         redrawAllWrapper(canvas, data)
 
     def timerFiredWrapper(canvas, data):
-    """wrapper function for timerFired"""
+        """wrapper function for timerFired"""
         timerFired(data)
         redrawAllWrapper(canvas, data)
         # delay for a short time as specified in timerDelay, then call timerFired again
